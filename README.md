@@ -1,2 +1,2 @@
 # Gestion-Restaurant
-Projet Flask avec Falou Kebe
+Projet Flask avec Fallou Kebe

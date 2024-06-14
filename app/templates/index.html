@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant XYZ</title>
+    <!-- Liens vers les fichiers CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Fichier CSS personnalisé pour le style supplémentaire -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Barre de navigation Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Restaurant XYZ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Commander</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nous Contacter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/connexion">Connexion / Inscription</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mt-4">
+        <!-- Section principale avec image et texte -->
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="display-4">Bienvenue chez Restaurant XYZ</h1>
+                <p class="lead">Découvrez nos délicieux plats préparés avec passion.</p>
+                <a href="#" class="btn btn-primary btn-lg">Voir notre menu</a>
+            </div>
+        </section>
+
+        <!-- Section pour afficher des images -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='img/shawarmaboeuf.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 1</h5>
+                        <p class="card-text">Description de l'image 1.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static',filename='img/mara.jpg') }}" class="card-img-top" alt="Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 2</h5>
+                        <p class="card-text">Description de l'image 2.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='img/DSC05617-1024x683.jpg') }}" class="card-img-top" alt="Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 3</h5>
+                        <p class="card-text">Description de l'image 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="bg-dark text-light text-center py-3">
+        <p>&copy; 2024 Restaurant XYZ. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Liens vers les fichiers JavaScript de Bootstrap (jQuery et Popper.js requis) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

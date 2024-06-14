@@ -1,15 +1,9 @@
-from flask import render_template, redirect, url_for, flash, request, Blueprint, session
+from flask import render_template, redirect, url_for, flash, request, Blueprint
 from flask_login import login_user, logout_user, login_required, current_user
-from app import db, login_manager
+from app import db
 from app.models import Utilisateur, Menu, Commande
 
-
 bp_main = Blueprint('main', __name__)
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return Utilisateur.query.get(int(user_id))
 
 
 @bp_main.route('/')
@@ -23,22 +17,21 @@ def inscription():
         nom_utilisateur = request.form['nom_utilisateur']
         email = request.form['email']
         mot_de_passe = request.form['mot_de_passe']
-        
+
         existing_user = Utilisateur.query.filter_by(email=email).first()
         if existing_user:
             flash('Cette adresse email est déjà associée à un compte.', 'danger')
             return redirect(url_for('main.inscription'))
-        
+
         utilisateur = Utilisateur(nom_utilisateur=nom_utilisateur, email=email)
         utilisateur.set_password(mot_de_passe)
-        
-        
+
         db.session.add(utilisateur)
         db.session.commit()
-        
+
         flash('Inscription réussie! Vous pouvez maintenant vous connecter.', 'success')
         return redirect(url_for('main.connexion'))
-    
+
     return render_template('inscription.html')
 
 
@@ -61,6 +54,7 @@ def connexion():
 @login_required
 def deconnexion():
     logout_user()
+    flash('Vous êtes maintenant déconnecté.', 'success')
     return redirect(url_for('main.index'))
 
 

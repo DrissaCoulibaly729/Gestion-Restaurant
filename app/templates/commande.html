@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commander - Restaurant  DRISSEFKA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Restaurant  DRISSEFKA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.afficher_menu') }}">Menu</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('main.passer_commande') }}">Commander</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.mes_commandes') }}">Mes Commandes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.deconnexion') }}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.connexion') }}">Connexion / Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Passer une commande</h1>
+        <div class="row">
+            {% for menu in menus %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='img/mara.jpg') }}" class="card-img-top" alt="Image plat">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ menu.nom }}</h5>
+                            <p class="card-text">Ingrédients: {{ menu.ingredients }}</p>
+                            <p class="card-text">Prix: {{ menu.prix }} CFA</p>
+                            {% if menu.disponibilite %}
+                                <form method="POST" action="{{ url_for('main.passer_commande') }}">
+                                    <input type="hidden" name="menu_id" value="{{ menu.id }}">
+                                    <div class="form-group">
+                                        <label for="quantite{{ menu.id }}">Quantité</label>
+                                        <input type="number" class="form-control" id="quantite{{ menu.id }}" name="quantite" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="demandes_speciales{{ menu.id }}">Demandes spéciales</label>
+                                        <textarea class="form-control" id="demandes_speciales{{ menu.id }}" name="demandes_speciales"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn mt-3 btn-primary">Commander</button>
+                                </form>
+                            {% else %}
+                                <p class="text-muted">Non disponible pour le moment</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light text-center py-3">
+        <p>&copy; 2024 Restaurant  DRISSEFKA. Tous droits réservés.</p>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+</body>
+</html>

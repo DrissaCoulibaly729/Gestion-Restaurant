@@ -40,3 +40,8 @@ class Commande(db.Model):
     quantite = db.Column(db.Integer, nullable=False)
     demandes_speciales = db.Column(db.String(500))
     statut = db.Column(db.String(50), default='En attente')
+
+    menu = db.relationship('Menu', backref=db.backref('commandes', lazy=True))
+
+    def __repr__(self):
+        return f"<Commande {self.id}>"

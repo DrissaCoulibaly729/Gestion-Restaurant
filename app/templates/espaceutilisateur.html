@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant  DRISSEFKA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Restaurant  DRISSEFKA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('main.afficher_menu') }}">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.passer_commande') }}">Commander</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.mes_commandes') }}">Mes Commandes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.deconnexion') }}">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="display-4">Bienvenue chez DRISSEFKA</h1>
+                <p class="lead">Découvrez nos délicieux plats préparés avec passion.</p>
+                <a href="{{ url_for('main.afficher_menu') }}" class="btn btn-primary btn-lg mb-4">Voir notre menu</a>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="h3">Nos meilleures ventes</div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='img/shawarmaboeuf.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 1</h5>
+                        <p class="card-text">Description de l'image 1.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static',filename='img/mara.jpg') }}" class="card-img-top" alt="Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 2</h5>
+                        <p class="card-text">Description de l'image 2.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='img/DSC05617-1024x683.jpg') }}" class="card-img-top" alt="Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 3</h5>
+                        <p class="card-text">Description de l'image 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row h-100">
+            <div class="h3">Nos meilleures ventes</div>
+            <div class="col-md-4 mb-4 ">
+                <div class="card">
+                    <img style="height:50%; object-fit:cover;" src="{{ url_for('static', filename='img/shawarmaboeuf.jpg') }}" class="card-img-top" alt="Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 1</h5>
+                        <p class="card-text">Description de l'image 1.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img style="height:80%; object-fit:cover;" src="{{ url_for('static',filename='img/mara.jpg') }}" class="card-img-top" alt="Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 2</h5>
+                        <p class="card-text">Description de l'image 2.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img style="height:50%; object-fit:cover;" src="{{ url_for('static', filename='img/DSC05617-1024x683.jpg') }}" class="card-img-top" alt="Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de l'image 3</h5>
+                        <p class="card-text">Description de l'image 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light text-center py-3">
+        <p>&copy; 2024 Restaurant  DRISSEFKA. Tous droits réservés.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+</body>
+</html>

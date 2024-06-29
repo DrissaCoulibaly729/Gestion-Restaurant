@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<main>
+  <section class="home" id="home">
+    <div class="home-left">
+      <p class="home-subtext">Bonjour, nouveau ami!</p>
+      <h1 class="main-heading">Nous ne cuisinons pas, nous créons vos émotions!</h1>
+      <p class="home-text">Découvrez notre passion pour la gastronomie et laissez-vous surprendre par des saveurs inoubliables.</p>
+      <div class="btn-group">
+        <a href="/menu" class="btn btn-primary btn-icon"><img src="{{ url_for('static', filename='images/menu.svg') }}" alt="icone de menu">Notre menu</a>
+        <a href="/about" class="btn btn-secondary btn-icon"><img src="{{ url_for('static', filename='images/arrow.svg') }}" alt="icone de flèche">À propos de nous</a>
+      </div>
+    </div>
+    <div class="home-right">
+      <img src="{{ url_for('static', filename='images/food1.png') }}" alt="image de nourriture" class="food-img food-1" width="200" loading="lazy">
+      <img src="{{ url_for('static', filename='images/food2.png') }}" alt="image de nourriture" class="food-img food-2" width="200" loading="lazy">
+      <img src="{{ url_for('static', filename='images/food3.png') }}" alt="image de nourriture" class="food-img food-3" width="200" loading="lazy">
+      <img src="{{ url_for('static', filename='images/dialog-1.svg') }}" alt="dialogue" class="dialog dialog-1" width="230">
+      <img src="{{ url_for('static', filename='images/dialog-2.svg') }}" alt="dialogue" class="dialog dialog-2" width="230">
+      <img src="{{ url_for('static', filename='images/circle.svg') }}" alt="forme de cercle" class="shape shape-1" width="25">
+      <img src="{{ url_for('static', filename='images/circle.svg') }}" alt="forme de cercle" class="shape shape-2" width="15">
+      <img src="{{ url_for('static', filename='images/circle.svg') }}" alt="forme de cercle" class="shape shape-3" width="30">
+      <img src="{{ url_for('static', filename='images/ring.svg') }}" alt="forme d'anneau" class="shape shape-4" width="60">
+      <img src="{{ url_for('static', filename='images/ring.svg') }}" alt="forme d'anneau" class="shape shape-5" width="40">
+    </div>
+  </section>
+</main>
+{% endblock %}

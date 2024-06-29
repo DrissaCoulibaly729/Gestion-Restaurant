@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Meta tags, title, and CSS links here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/foodhub.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/media_query.css') }}">
+    <!-- Google Fonts and other head elements here -->
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <nav class="navbar">
+                <div class="navbar-wrapper">
+                    <a href="#">
+                        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="logo" width="130">
+                    </a>
+                    <ul class="navbar-nav">
+                      <li>
+                        <a href="{{ url_for('routes.home') }}" class="nav-link">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('routes.about') }}" class="nav-link">À propos</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('routes.services') }}" class="nav-link">Services</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('routes.menu') }}" class="nav-link">Notre menu</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('routes.testimonials') }}" class="nav-link">Témoignages</a>
+                    </li>
+                    </ul>
+                    <div  class="navbar-btn-group">
+                        <button id="cart-button" class="shopping-cart-btn">
+                            <img src="{{ url_for('static', filename='images/cart.svg') }}" alt="icone de panier" width="18">
+                            <span class="count">0</span>
+                        </button>
+                        <button class="menu-toggle-btn">
+                            <span class="line one"></span>
+                            <span class="line two"></span>
+                            <span class="line three"></span>
+                        </button>
+                        {% if not current_user.is_authenticated %}
+                        <a href="{{ url_for('routes.login') }}" class="login-btn">Connexion</a>
+                        {% else %}
+                        <a href="{{ url_for('routes.logout') }}" class="logout-btn">Déconnexion</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            <div id="cart-box" class="cart-box">
+                <ul class="cart-box-ul">
+                    <h4 class="cart-h4">Votre commande.</h4>
+                    <!-- Cart items will be dynamically inserted here by JavaScript -->
+                </ul>
+                <div class="cart-btn-group">
+                    <button class="btn btn-secondary">Voir commande</button>
+                    <button class="btn btn-primary">Payer</button>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        {% block content %}{% endblock %}
+        <!-- Footer -->
+        <footer>
+            <!-- Footer content here -->
+        </footer>
+    </div>
+    <!-- Custom JS -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cartButton = document.getElementById('cart-button');
+        const cartBox = document.getElementById('cart-box');
+    
+        cartButton.addEventListener('click', function() {
+          cartBox.classList.toggle('active');
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          fetch('/cart_count')
+              .then(response => response.json())
+              .then(data => {
+                  const cartCountElement = document.querySelector('.shopping-cart-btn .count');
+                  cartCountElement.textContent = data.count;
+              })
+              .catch(error => console.error('Error fetching cart count:', error));
+      });
+  </script>
+  
+    
+    <script src="{{ url_for('static', filename='js/foodhub.js') }}"></script>
+    <!-- Ionicons and other scripts here -->
+</body>
+</html>

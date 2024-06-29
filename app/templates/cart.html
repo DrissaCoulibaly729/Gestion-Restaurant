@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cart-box">
+    {% if current_user.is_authenticated %}
+    <ul class="cart-box-ul">
+      <h4 class="cart-h4">Votre commande.</h4>
+
+      <li>
+        <a href="#" class="cart-item">
+          <div class="img-box">
+            <img src="{{ url_for('static', filename='images/menu1.jpg') }}" alt="product image" class="product-img" width="50" height="50" loading="lazy" />
+          </div>
+          <h5 class="product-name">Saumon gravlax</h5>
+          <p class="product-price"><span class="small">$</span>9</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="cart-item">
+          <div class="img-box">
+            <img src="{{ url_for('static', filename='images/menu2.jpg') }}" alt="product image" class="product-img" width="50" height="50" loading="lazy" />
+          </div>
+          <h5 class="product-name">Chèvre frit au miel</h5>
+          <p class="product-price"><span class="small">$</span>14</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="cart-item">
+          <div class="img-box">
+            <img src="{{ url_for('static', filename='images/menu3.jpg') }}" alt="product image" class="product-img" width="50" height="50" loading="lazy" />
+          </div>
+          <h5 class="product-name">Poisson croustillant</h5>
+          <p class="product-price"><span class="small">$</span>4</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="cart-item">
+          <div class="img-box">
+            <img src="{{ url_for('static', filename='images/menu4.jpg') }}" alt="product image" class="product-img" width="50" height="50" loading="lazy" />
+          </div>
+          <h5 class="product-name">Stracciatella</h5>
+          <p class="product-price"><span class="small">$</span>11</p>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="cart-item">
+          <div class="img-box">
+            <img src="{{ url_for('static', filename='images/menu5.jpg') }}" alt="product image" class="product-img" width="50" height="50" loading="lazy" />
+          </div>
+          <h5 class="product-name">Carpaccio de daurade</h5>
+          <p class="product-price"><span class="small">$</span>19</p>
+        </a>
+      </li>
+    </ul>
+
+    <div class="cart-btn-group">
+      <button class="btn btn-secondary">Voir commande</button>
+      <button class="btn btn-primary">Payer</button>
+    </div>
+    {% else %}
+      <p>Connectez-vous pour voir votre commande.</p>
+    {% endif %}
+  </div>
+{% endblock %}

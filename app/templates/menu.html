@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block title %}Notre Menu{% endblock %}
+
+{% block content %}
+<main>
+    <section class="product" id="menu">
+
+        <h2 class="section-title">Les plats les plus populaires</h2>
+
+        <p class="section-text">
+          Découvrez nos plats les plus appréciés, préparés avec des ingrédients frais et savoureux.
+        </p>
+
+        <div class="products-grid">
+
+          {% for plat in plats %}
+          <a href="{{ url_for('routes.plat_detail', plat_id=plat.id) }}">
+
+            <div class="product-card">
+
+              <div class="img-box">
+                <img src="{{ url_for('static', filename=plat.photo) }}" alt="image du produit" class="product-img" width="200" loading="lazy">
+              </div>
+
+              <div class="product-content">
+
+                <div class="wrapper">
+                  <h3 class="product-name">{{ plat.name }}</h3>
+
+                  <p class="product-price">
+                    <span class="small">$</span>{{ plat.price }}
+                  </p>
+                </div>
+
+                <p class="product-text">
+                  {{ plat.description }}
+                </p>
+
+                <div class="product-rating">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+
+              </div>
+
+            </div>
+
+          </a>
+          {% endfor %}
+
+        </div>
+
+        <button class="btn btn-primary btn-icon">
+          <img src="{{ url_for('static', filename='images/menu.svg') }}" alt="icône de menu">
+          Voir le menu complet
+        </button>
+
+      </section>
+</main>
+{% endblock %}

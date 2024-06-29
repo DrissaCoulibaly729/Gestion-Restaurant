@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+
+{% block title %}Témoignages{% endblock %}
+
+{% block content %}
+<main>
+    <section class="testimonials" id="testimonials">
+
+        <h2 class="section-title">Ce que disent nos clients ?</h2>
+
+        <p class="section-text">
+          Découvrez les avis de nos clients sur leur expérience avec nos plats délicieux et notre service exceptionnel.
+        </p>
+
+        <div class="testimonials-grid">
+
+          <div class="testimonials-card">
+
+            <h4 class="card-title">Très savoureux</h4>
+
+            <div class="testimonials-rating">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+
+            <p class="testimonials-text">
+              "J'ai adoré chaque bouchée! Les saveurs étaient parfaitement équilibrées et le service était impeccable."
+            </p>
+
+            <div class="customer-info">
+              <div class="customer-img-box">
+                <img src="{{ url_for('static', filename='images/testimonials1.jpg') }}" alt="image du client" class="customer-img" width="100" loading="lazy">
+              </div>
+
+              <h5 class="customer-name">Emma Newman</h5>
+            </div>
+
+          </div>
+
+          <div class="testimonials-card">
+          
+            <h4 class="card-title">Je déjeune ici tous les jours</h4>
+          
+            <div class="testimonials-rating">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+          
+            <p class="testimonials-text">
+              "C'est devenu mon lieu de prédilection pour le déjeuner! Chaque plat est une expérience gastronomique."
+            </p>
+          
+            <div class="customer-info">
+              <div class="customer-img-box">
+                <img src="{{ url_for('static', filename='images/testimonials2.jpg') }}" alt="image du client" class="customer-img" width="100" loading="lazy">
+              </div>
+          
+              <h5 class="customer-name">Paul Trueman</h5>
+            </div>
+          
+          </div>
+
+        </div>
+
+      </section>
+</main>
+{% endblock %}

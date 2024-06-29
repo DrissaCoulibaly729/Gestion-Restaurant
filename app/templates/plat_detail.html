@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block title %}Détails du plat{% endblock %}
+
+{% block content %}
+<main>
+    <section class="product" id="plat-detail">
+
+        <h2 class="section-title">{{ plat.name }}</h2>
+
+        <div class="product-detail">
+
+            <div class="img-box">
+                <img src="{{ url_for('static', filename=plat.photo) }}" alt="image du produit" class="product-img" width="400" loading="lazy">
+            </div>
+
+            <div class="product-content">
+                <h3 class="product-name">{{ plat.name }}</h3>
+
+                <p class="product-price">
+                    <span class="small">$</span>{{ plat.price }}
+                </p>
+
+                <p class="product-text">
+                    {{ plat.description }}
+                </p>
+
+                <p class="product-ingredients">
+                    <strong>Ingrédients :</strong> {{ plat.ingredients }}
+                </p>
+
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="special_requests">Demandes spéciales :</label>
+                        <input type="text" id="special_requests" name="special_requests" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Commander</button>
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+</main>
+{% endblock %}

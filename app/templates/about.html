@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block title %}À propos{% endblock %}
+
+{% block content %}
+<main>
+  <section class="about" id="about">
+    <div class="about-left">
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='images/about-image.jpg') }}" alt="image à propos" class="about-img" width="250">
+      </div>
+      <div class="abs-content-box">
+        <div class="dotted-border">
+          <p class="number-lg">17</p>
+          <p class="text-md">Ans <br> d'Expérience</p>
+        </div>
+      </div>
+      <img src="{{ url_for('static', filename='images/circle.svg') }}" alt="forme de cercle" class="shape shape-6" width="20">
+      <img src="{{ url_for('static', filename='images/circle.svg') }}" alt="forme de cercle" class="shape shape-7" width="30">
+      <img src="{{ url_for('static', filename='images/ring.svg') }}" alt="forme d'anneau" class="shape shape-8" width="50">
+    </div>
+    <div class="about-right">
+      <p class="section-subtext">Qui sommes-nous</p>
+      <h2 class="section-heading">Découvrez les avantages que nous vous offrons</h2>
+      <p class="section-text">Chez Foodhub, nous nous engageons à offrir une expérience culinaire exceptionnelle. Chaque plat est préparé avec soin et passion pour vous garantir des moments mémorables à chaque bouchée.</p>
+      <div class="about-btn-group">
+        <button class="btn btn-primary">En savoir plus</button>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

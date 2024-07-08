@@ -1,12 +1,14 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from .config import Config
 from flask_migrate import Migrate
+from flask_mail import Mail
+from .config import Config
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 migrate = Migrate()
+mail = Mail()
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +17,7 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
+    mail.init_app(app)
 
     from .models import User  # Assurez-vous d'importer votre modèle User
     

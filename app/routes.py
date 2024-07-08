@@ -1,8 +1,28 @@
 from flask import Blueprint, jsonify, request,  render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, current_user, logout_user
 from .models import db, User, MenuItem, Order
+from .email import send_order_confirmation
 
 bp = Blueprint('routes', __name__)
+@bp.route('/pay', methods=['GET', 'POST'])
+@login_required
+def pay():
+    # Récupère toutes les commandes de l'utilisateur courant
+    orders = current_user.orders
+    
+    # Met à jour le statut de toutes les commandes de l'utilisateur à "Acceptée"
+    for order in orders:
+        order.status = 'Acceptée'
+    
+    # Envoie un email de confirmation pour chaque commande
+    for order in orders:
+        send_order_confirmation(current_user.email, order)
+    
+    db.session.commit()  # Commit les modifications à la base de données
+    
+    flash('Toutes vos commandes ont été acceptées et confirmées par email.', 'success')
+    return redirect(url_for('orders.cart_content'))
+
 @bp.route('/')
 def home():
     return render_template('home.html')
@@ -40,7 +60,7 @@ def testimonials():
 @bp.route('/cart-content')
 @login_required
 def cart_content():
-    orders = db.session.query(Order, MenuItem).join(MenuItem, Order.items == MenuItem.id).filter(Order.user_id == current_user.id).all()
+    orders = db.session.query(Order, MenuItem).join(MenuItem, Order.items == MenuItem.id).filter(Order.user_id == current_user.id, Order.status == 'en cours').all()
 
     cart_items = []
     for order, item in orders:

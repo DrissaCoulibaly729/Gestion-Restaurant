@@ -7,21 +7,18 @@ bp = Blueprint('routes', __name__)
 @bp.route('/pay', methods=['GET', 'POST'])
 @login_required
 def pay():
-    # Récupère toutes les commandes de l'utilisateur courant
-    orders = current_user.orders
+    # Récupère toutes les commandes de l'utilisateur courant dont le statut est "En cours"
+    orders_in_progress = [order for order in current_user.orders if order.status == 'en cours']
     
-    # Met à jour le statut de toutes les commandes de l'utilisateur à "Acceptée"
-    for order in orders:
-        order.status = 'Acceptée'
-    
-    # Envoie un email de confirmation pour chaque commande
-    for order in orders:
+    # Envoie un email de confirmation pour chaque commande en cours
+    for order in orders_in_progress:
         send_order_confirmation(current_user.email, order)
+        order.status = 'Acceptée'  # Met à jour le statut de la commande à "Acceptée"
     
     db.session.commit()  # Commit les modifications à la base de données
     
-    flash('Toutes vos commandes ont été acceptées et confirmées par email.', 'success')
-    return redirect(url_for('orders.cart_content'))
+    flash('Toutes vos commandes en cours ont été acceptées et confirmées par email.', 'success')
+    return render_template('home.html')
 
 @bp.route('/')
 def home():
